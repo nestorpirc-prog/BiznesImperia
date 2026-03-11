@@ -8,20 +8,44 @@
 
 <body>
 
+<header>
 <h1>Business Empire</h1>
-<p>Build your business and become a billionaire</p>
+<p>Build your own financial empire</p>
+</header>
 
-<div class="game">
+<div class="container">
 
+<div class="stats">
 <h2 id="money">$0</h2>
+<p>Income: <span id="income">$1</span>/sec</p>
+</div>
+
+<div class="buttons">
 
 <button onclick="work()">Work</button>
-<button onclick="buyShop()">Buy Shop ($50)</button>
-<button onclick="buyCompany()">Buy Company ($500)</button>
+
+<button onclick="buyBusiness('lemonade')">
+Buy Lemonade Stand ($50)
+</button>
+
+<button onclick="buyBusiness('shop')">
+Buy Shop ($250)
+</button>
+
+<button onclick="buyBusiness('company')">
+Buy Company ($1000)
+</button>
 
 </div>
 
-<script src="game.js"></script>
+</div>
+
+<footer>
+<p>Business Empire Web Game</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="game/game.js"></script>
 
 </body>
 </html>
