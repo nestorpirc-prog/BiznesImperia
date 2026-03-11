@@ -1,40 +1,83 @@
-let money = 0
-let income = 1
+let game = {
 
-function update(){
-document.getElementById("money").innerText = "$" + money
+money:0,
+income:1,
+
+businesses:{
+lemonade:{
+price:50,
+income:2,
+owned:0
+},
+
+shop:{
+price:250,
+income:10,
+owned:0
+},
+
+company:{
+price:1000,
+income:50,
+owned:0
+}
+
+}
+
 }
 
 function work(){
-money += income
-update()
-}
 
-function buyShop(){
-
-if(money >= 50){
-money -= 50
-income += 5
-alert("You bought a shop!")
-}
-
-update()
+game.money+=game.income
+updateUI()
 
 }
 
-function buyCompany(){
+function buyBusiness(name){
 
-if(money >= 500){
-money -= 500
-income += 50
-alert("You bought a company!")
+let b=game.businesses[name]
+
+if(game.money>=b.price){
+
+game.money-=b.price
+game.income+=b.income
+b.owned++
+
+b.price=Math.floor(b.price*1.5)
+
+alert("Business purchased!")
+
 }
 
-update()
+updateUI()
 
 }
 
 setInterval(()=>{
-money += income
-update()
-},3000)
+
+game.money+=game.income
+updateUI()
+saveGame()
+
+},1000)
+
+function saveGame(){
+
+localStorage.setItem("empireSave",JSON.stringify(game))
+
+}
+
+function loadGame(){
+
+let save=localStorage.getItem("empireSave")
+
+if(save){
+
+game=JSON.parse(save)
+
+}
+
+}
+
+loadGame()
+updateUI()
